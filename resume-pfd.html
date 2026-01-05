@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Michael Thomas — Senior Cloud Engineer</title>
+  <style>
+    /* ====== RESET / BASE ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: #111;
+      background: #fff;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      overflow-x: hidden;
+      font-size: 15px;
+    }
+    a { color: #0f4c81; text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ====== LAYOUT ====== */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ====== CARD ====== */
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(17, 24, 39, 0.08);
+      overflow: hidden;
+    }
+
+    .pad { padding: 22px; }
+
+    /* ====== HERO ====== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 26px 22px;
+    }
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
+    .name {
+      font-size: 34px;
+      letter-spacing: 0.6px;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .role {
+      margin: 8px 0 0;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .tagline {
+      margin: 12px 0 0;
+      max-width: 68ch;
+      color: #1f2937;
+      font-size: 15px;
+    }
+
+    .pillbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .pill {
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #111;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      box-shadow: none;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: #4b7bff;
+      box-shadow: none;
+    }
+    .dot.g { background: #0ea5e9; }
+    .dot.p { background: #a855f7; }
+
+    /* ====== CTA / CONTACT ====== */
+    .contact {
+      display: grid;
+      gap: 10px;
+    }
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+    .contact a:hover {
+      transform: translateY(-2px);
+      background: #eef2f7;
+      border-color: #d1d5db;
+      text-decoration: none;
+    }
+    .ico {
+      width: 18px; height: 18px;
+      opacity: 0.95;
+      flex: 0 0 auto;
+    }
+    .muted { color: #4b5563; font-size: 13px; }
+
+    /* ====== SECTION TITLES ====== */
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .section-title h2 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #111;
+    }
+    .chip {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+      color: #111;
+    }
+
+    /* ====== EXPERIENCE TIMELINE ====== */
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+    .job {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .job-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .job-title {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+    .job-meta {
+      font-size: 13px;
+      color: #4b5563;
+      white-space: nowrap;
+    }
+    .job-sub {
+      margin: 0 0 10px;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    ul.bullets {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      color: #111;
+      font-size: 14px;
+    }
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .badge {
+      font-size: 11px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #edf2f7;
+      color: #111;
+    }
+
+    /* ====== SKILLS ====== */
+    .skill-list {
+      display: grid;
+      gap: 10px;
+    }
+    .skill {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .skill strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .skill span {
+      display: block;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    /* ====== CERTS ====== */
+    .certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cert {
+      flex: 1 1 220px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .cert b { font-size: 13px; display: block; }
+    .cert small { color: #4b5563; }
+
+    /* ====== FOOTER ====== */
+    footer {
+      margin-top: 18px;
+      color: #4b5563;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* ====== PRINT ====== */
+    @page { size: letter; margin: 0.5in; }
+
+    @media print {
+      html, body, * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      html, body {
+        background: #fff !important;
+        color: #111 !important;
+      }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 20px 60px; }
+      .card, .job, .skill, .cert, .contact a, .section-title, .timeline article {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      a { color: #0f4c81; text-decoration: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="card">
+      <div class="hero">
+        <div>
+          <h1 class="name">Michael Thomas</h1>
+          <p class="role">Senior Cloud Engineer • Publix • Automation • Networking • Security</p>
+          <p class="tagline">
+            Senior Cloud Engineer at Publix with 12 years of experience spanning customer-facing support to enterprise cloud engineering. I design and automate secure cloud platforms using Terraform, Python, Azure Functions, and Azure DevOps—building CI/CD pipelines, standardizing infrastructure delivery, and hardening multi-cloud networks. Recently, I led a zero-touch onboarding automation that generates environment-specific Terraform and pipelines via PRs, and helped establish the cross-cloud firewall foundation securing GCP-to-Azure traffic.
+          </p>
+
+          <div class="pillbar">
+            <span class="pill"><span class="dot"></span> Terraform + Azure at scale</span>
+            <span class="pill"><span class="dot g"></span> Event-driven automation</span>
+            <span class="pill"><span class="dot p"></span> Security-first networking</span>
+          </div>
+        </div>
+
+        <div class="pad" style="padding: 18px 18px 18px;">
+          <div class="contact" aria-label="Contact">
+            <a href="mailto:michaelthomaswrite@gmail.com">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" opacity="0.9"/>
+                <path d="m6.5 7.5 5.5 4 5.5-4" stroke="currentColor" opacity="0.9"/>
+              </svg>
+              <div>
+                <div><b>Email</b></div>
+                <div class="muted">michaelthomaswrite@gmail.com</div>
+              </div>
+            </a>
+
+            <a href="tel:+18637979302">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 3h3l1 5-2 1c.8 2.1 2.5 3.8 4.6 4.6l1-2 5 1v3c0 1.1-.9 2-2 2C10.3 21.6 2.4 13.7 2.4 4.9c0-1.1.9-1.9 2-1.9H8Z" stroke="currentColor" opacity="0.9"/>
+              </svg>
+              <div>
+                <div><b>Phone</b></div>
+                <div class="muted">863-797-9302</div>
+              </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/mike-x403/" target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" opacity="0.9"/>
+                <path d="M9 10v5" stroke="currentColor" opacity="0.9"/>
+                <path d="M9 8.5a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0Z" fill="currentColor" opacity="0.9"/>
+                <path d="M12 15v-2.4c0-.9.7-1.6 1.6-1.6c.9 0 1.4.7 1.4 1.6V15" stroke="currentColor" opacity="0.9"/>
+              </svg>
+              <div>
+                <div><b>LinkedIn</b></div>
+                <div class="muted">linkedin.com/in/mike-x403</div>
+              </div>
+            </a>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=Lutz%2C%20FL" target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" opacity="0.9"/>
+                <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" opacity="0.9"/>
+              </svg>
+              <div>
+                <div><b>Location</b></div>
+                <div class="muted">Lutz, FL</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="height: 18px;"></div>
+
+    <div class="grid">
+      <!-- LEFT: EXPERIENCE -->
+      <main class="card">
+        <div class="pad">
+          <div class="section-title">
+            <h2>Work Experience</h2>
+            <span class="chip">Automation • Security • Scale</span>
+          </div>
+
+          <div class="timeline">
+            <article class="job">
+              <div class="job-head">
+                <h3 class="job-title">Senior Cloud Engineer — Publix</h3>
+                <div class="job-meta">Apr 2025 – Present</div>
+              </div>
+              <p class="job-sub">
+                Promoted after consistently delivering high-impact automation and infrastructure solutions.
+              </p>
+              <ul class="bullets">
+                <li><b>Azure Onboarding Automation (Function App):</b> Designed and implemented an Azure Function App to fully automate onboarding of new application environments, dynamically generating Azure DevOps pipelines and creating pull requests with environment-specific Terraform.</li>
+                <li>Integrated with internal metadata systems to define VNets, subnets, and resource groups, enabling zero-touch setup that reduced manual work and accelerated delivery timelines.</li>
+                <li>Built the cross-cloud firewall foundation securing traffic between Google Cloud Platform and Azure.</li>
+                <li>Led efforts to configure Terraform with Palo Alto Panorama for scalable, centralized security management.</li>
+                <li>Identified and automated repetitive tasks to increase workflow efficiency across teams.</li>
+              </ul>
+              <div class="tech" aria-label="Technologies">
+                <span class="badge">Azure Functions (Python)</span>
+                <span class="badge">Azure DevOps REST API</span>
+                <span class="badge">Terraform</span>
+                <span class="badge">Azure Repos</span>
+                <span class="badge">Azure Pipelines</span>
+                <span class="badge">Git</span>
+                <span class="badge">Service Principals</span>
+                <span class="badge">IaC</span>
+                <span class="badge">JSON</span>
+              </div>
+            </article>
+
+            <article class="job">
+              <div class="job-head">
+                <h3 class="job-title">Cloud Engineer — Publix</h3>
+                <div class="job-meta">Feb 2022 – Apr 2025</div>
+              </div>
+              <ul class="bullets">
+                <li>Spearheaded onboarding of application teams onto Azure by configuring Terraform-managed resources, implementing CI/CD pipelines, and enforcing version control with Git.</li>
+                <li>Developed Azure Resource Graph queries via Azure CLI to automate tasks and streamline team operations.</li>
+                <li>Partnered with Cloud Security and application teams to ensure compliance, remediate violations, and harden network security.</li>
+                <li>Improved documentation readability and accessibility for critical processes and best practices.</li>
+                <li>Enhanced Hub-and-Spoke traffic flow by updating production Azure Firewall configurations.</li>
+                <li>Continuously improved Terraform modules for scalability, reliability, and maintainability across multi-cloud environments.</li>
+              </ul>
+              <div class="tech">
+                <span class="badge">Azure</span>
+                <span class="badge">Terraform Modules</span>
+                <span class="badge">Azure Firewall</span>
+                <span class="badge">Azure CLI / Graph</span>
+                <span class="badge">CI/CD</span>
+                <span class="badge">Git</span>
+                <span class="badge">Networking</span>
+                <span class="badge">Security</span>
+              </div>
+            </article>
+
+            <article class="job">
+              <div class="job-head">
+                <h3 class="job-title">Associate Customer Technical Support Analyst — Publix</h3>
+                <div class="job-meta">Feb 2015 – Feb 2022</div>
+              </div>
+              <ul class="bullets">
+                <li>Delivered responsive technical support to store and pharmacy employees, resolving issues quickly to minimize operational impact.</li>
+                <li>Monitored and responded to alerts for critical systems, driving fast remediation and reducing downtime.</li>
+                <li>Collaborated with peers on complex troubleshooting and consistently delivered strong customer outcomes.</li>
+                <li>Built deep understanding of store application ecosystems to accelerate diagnosis and resolution.</li>
+              </ul>
+              <div class="tech">
+                <span class="badge">Troubleshooting</span>
+                <span class="badge">Incident Response</span>
+                <span class="badge">Customer Service</span>
+                <span class="badge">Windows</span>
+                <span class="badge">Linux</span>
+              </div>
+            </article>
+
+            <article class="job">
+              <div class="job-head">
+                <h3 class="job-title">Publix Cashier — Lakeland, FL</h3>
+                <div class="job-meta">2013 – 2014</div>
+              </div>
+              <ul class="bullets">
+                <li>Delivered excellent customer service while efficiently processing transactions and maintaining accuracy.</li>
+                <li>Handled cash and POS operations with strong attention to detail and accountability.</li>
+              </ul>
+              <div class="tech">
+                <span class="badge">Customer Experience</span>
+                <span class="badge">POS</span>
+                <span class="badge">Accuracy</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </main>
+
+      <!-- RIGHT: PROJECTS / SKILLS / CERTS -->
+      <aside class="card">
+        <div class="pad">
+          <div class="section-title">
+            <h2>Signature Projects</h2>
+            <span class="chip">High-impact builds</span>
+          </div>
+
+          <div class="skill-list">
+            <div class="skill">
+              <strong>AI-Powered Voice Automation System (Event-Driven, Asynchronous)</strong>
+              <span>Architected an asynchronous voice automation system using Azure Communication Services + Azure AI Foundry to run structured outbound calls at scale, interpret responses, and trigger downstream workflows.</span>
+              <div class="tech" style="margin-top:10px;">
+                <span class="badge">Azure Communication Services</span>
+                <span class="badge">Azure AI Foundry</span>
+                <span class="badge">Azure Functions</span>
+                <span class="badge">Python</span>
+                <span class="badge">Event-Driven</span>
+              </div>
+            </div>
+
+            <div class="skill">
+              <strong>Firewall Policy Evaluation API (FastAPI)</strong>
+              <span>Containerized FastAPI service to evaluate firewall rule requests against internal security policies; flags high-risk ports/ranges and non-compliant configs before approval.</span>
+              <div class="tech" style="margin-top:10px;">
+                <span class="badge">FastAPI</span>
+                <span class="badge">Python</span>
+                <span class="badge">Docker</span>
+                <span class="badge">App Services / ACI</span>
+              </div>
+            </div>
+
+            <div class="skill">
+              <strong>Firewall Rule Automation</strong>
+              <span>Automated evaluation + approval workflow via Azure DevOps service hooks; routed approvals, assigned implementation, and used tagging to prevent duplicate processing with traceable governance.</span>
+              <div class="tech" style="margin-top:10px;">
+                <span class="badge">Azure DevOps</span>
+                <span class="badge">Azure Functions</span>
+                <span class="badge">Log Analytics</span>
+                <span class="badge">KQL</span>
+              </div>
+            </div>
+
+            <div class="skill">
+              <strong>Stale Pipeline Detection & Recovery</strong>
+              <span>Built a cron-driven Azure Function App that scanned Azure DevOps for pipelines idle 30+ days across all cloud onboarded app teams (GCP + Azure), auto-queued them at 3am to clear drift, then at 9am opened work items to assigned engineers for any runs that failed to succeed.</span>
+              <div class="tech" style="margin-top:10px;">
+                <span class="badge">YAML Pipelines</span>
+                <span class="badge">Azure Functions</span>
+                <span class="badge">Azure DevOps REST API</span>
+                <span class="badge">Python</span>
+              </div>
+            </div>
+
+            <div class="skill">
+              <strong>Terraform DNS PR-Generation</strong>
+              <span>Azure Function App pulled DNS requests from work items, checked for existing records, injected the needed Terraform DNS entries with code updates, opened a PR, and linked it back to the request in Azure DevOps.</span>
+              <div class="tech" style="margin-top:10px;">
+                <span class="badge">Terraform</span>
+                <span class="badge">Azure DevOps</span>
+                <span class="badge">Azure Functions</span>
+                <span class="badge">Git</span>
+                <span class="badge">Python</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 18px;"></div>
+
+          <div class="section-title">
+            <h2>Core Competencies</h2>
+            <span class="chip">Execution + ownership</span>
+          </div>
+
+          <div class="skill-list">
+            <div class="skill">
+              <strong>Automation</strong>
+              <span>Python, Azure Functions, Azure CLI/Graph, KQL, workflow orchestration, service hooks.</span>
+            </div>
+            <div class="skill">
+              <strong>Infrastructure as Code</strong>
+              <span>Terraform modules, pull request workflows, standards enforcement, repeatable environments.</span>
+            </div>
+            <div class="skill">
+              <strong>Networking & Security</strong>
+              <span>Hub-and-spoke traffic engineering, firewall governance, policy evaluation, centralized management (Panorama).</span>
+            </div>
+            <div class="skill">
+              <strong>CI/CD & Git</strong>
+              <span>Azure DevOps pipelines, YAML, code review automation, traceability, operational reliability.</span>
+            </div>
+            <div class="skill">
+              <strong>Tooling</strong>
+              <span>Bash, PowerShell, Windows + Linux troubleshooting, rapid adoption of new tech.</span>
+            </div>
+          </div>
+
+          <div style="height: 18px;"></div>
+
+          <div class="section-title">
+            <h2>Certifications</h2>
+            <span class="chip">Microsoft</span>
+          </div>
+
+          <div class="certs">
+            <div class="cert">
+              <b>AZ-104</b>
+              <small>Microsoft Azure Administrator</small>
+            </div>
+            <div class="cert">
+              <b>AZ-300</b>
+              <small>Microsoft Azure Architect</small>
+            </div>
+            <div class="cert">
+              <b>AZ-700</b>
+              <small>Azure Network Engineer Associate</small>
+            </div>
+            <div class="cert">
+              <b>AZ-500</b>
+              <small>Azure Security Engineer Associate</small>
+            </div>
+            <div class="cert">
+              <b>AZ-900</b>
+              <small>Microsoft Azure Fundamentals</small>
+            </div>
+            <div class="cert">
+              <b>AI-900</b>
+              <small>Microsoft Azure AI Fundamentals</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</body>
+</html>
